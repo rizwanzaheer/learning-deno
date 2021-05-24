@@ -4,6 +4,9 @@ const app = new Application();
 
 const port = 3000;
 
+// Static files
+app.static("/", "./public");
+
 // Routes
 app.get("/", async (ctx: Context) => {
   console.log("get routes is calling!!!");
