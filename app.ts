@@ -1,4 +1,10 @@
 import { Application, Context } from "https://deno.land/x/abc@v1.3.1/mod.ts";
+import {
+  getAllBooks,
+  createBook,
+  getBook,
+  deleteBook,
+} from "./controllers/bookController.ts";
 
 const app = new Application();
 
@@ -14,19 +20,10 @@ app.get("/", async (ctx: Context) => {
 });
 
 app
-  .get("/books", (ctx: Context) => {
-    // ctx.string("this is all books!");
-    ctx.json(
-      [
-        { name: "test", title: "t" },
-        { name: "test1", title1: "t2" },
-      ],
-      200
-    );
-  })
-  .get("/books/:id", () => {})
-  .post("/books", () => {})
-  .delete("/books/:id", () => {});
+  .get("/books", getAllBooks)
+  .get("/books/:id", getBook)
+  .post("/books", createBook)
+  .delete("/books/:id", deleteBook);
 
 // server start/listen
 app.start({ port });
