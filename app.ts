@@ -13,6 +13,21 @@ app.get("/", async (ctx: Context) => {
   await ctx.file("./public/index.html");
 });
 
+app
+  .get("/books", (ctx: Context) => {
+    // ctx.string("this is all books!");
+    ctx.json(
+      [
+        { name: "test", title: "t" },
+        { name: "test1", title1: "t2" },
+      ],
+      200
+    );
+  })
+  .get("/books/:id", () => {})
+  .post("/books", () => {})
+  .delete("/books/:id", () => {});
+
 // server start/listen
 app.start({ port });
 
